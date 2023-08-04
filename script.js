@@ -55,15 +55,34 @@ buttons.forEach(button => button.addEventListener("click", function(e){
             appendSecondValue(input);
         }
     } else if (button.classList.contains("operator")){
-        input = (e.target.textContent);
-        setFirstOperator(input);
+        
+            input = (e.target.textContent);
+            setFirstOperator(input);
+        
     } else if (button.value.includes("clear")){
         reset();
         console.log("Let's clear everything");
+    } else if (button.classList.contains("equal")){
+        input = (e.target.textContent);
+        equalFunction();
+    } else if (button.classList.contains("comma")){
+        input = (e.target.textContent);
+        comma(input);
+    } else if (button.value.includes("return")){
+            displayValue = displayValue.slice(0,-1);
+            updateDisplay();
+            
     }
 
 
 }))
+
+
+function comma(number){
+    displayValue += number;
+    updateDisplay();
+
+}
 
 //changefirstvalue because 0
 function changeFirstValue(number){
@@ -99,19 +118,41 @@ function appendSecondValue(number){
 // stored in SecondValue
 
 function setFirstOperator(operator){
+    if (firstOperator == null){
     firstValue = displayValue;
     displayValue = operator;
     updateDisplay();
-    firstOperator = operator;
+    firstOperator = operator;}
 }
 
 
-
+//function to call the math and set dp to equal
+function equalFunction(){
+    if (secondValue == null){
+    } else {
+    secondValue = displayValue;
+    displayValue = quickMaths(firstValue,secondValue,firstOperator);
+    updateDisplay();
+    secondValue = null;
+    firstValue = displayValue;
+    firstOperator = null;
+}}
 
 
 
 
 //function to do the maths
+function quickMaths(num1,num2,oper){
+    if (oper == "+"){
+        return parseInt(num1) + parseInt(num2);
+    } if (oper == "-"){
+        return num1 - num2;
+    } if (oper == "*"){
+        return num1 * num2;
+    } if (oper == "/"){
+        return num1 / num2;
+    }
+}
 
 
 ///we would want the numbers to fill in FirsValue,

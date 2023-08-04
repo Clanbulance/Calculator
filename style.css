@@ -55,6 +55,12 @@ main{
 button{
     border-radius: 4px;
     background-color: rgba(226, 225, 225, 0.918);
-    border:2px solid black
+    border:2px solid black;
+    font-size: 10mm;
+    font-weight: bold;
 }
 
+button:hover{
+    border:5px solid black;
+    border-radius: 6px;
+}
